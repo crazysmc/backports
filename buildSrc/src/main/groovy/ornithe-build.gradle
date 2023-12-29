@@ -11,17 +11,11 @@ base.archivesName = "${project.mod_id}-${project.environment}"
 
 dependencies {
   minecraft "com.mojang:minecraft:${project.minecraft_version}"
-
   mappings project.loom.layered {
     mappings "net.ornithemc:feather:${project.minecraft_version}-${project.environment}+build.${project.feather_build}:v2"
     addLayer project.ploceus.nestedMappings()
   }
-  // without nests: net.minecraft:minecraft-clientonly-client-calamus-intermediary-v2:b1.5-loom.mappings.b1_5.layered+hash.498024041-v2
   nests "net.ornithemc:nests:${project.minecraft_version}-${project.environment}+build.${project.nests_build}"
-  // failed not found:   net.minecraft:minecraft-CLIENTOnly-c65ec6bb44:b1.5-loom.mappings.b1_5.layered+hash.498024041-v2
-  // generated file was: net.minecraft:minecraft-clientOnly-c65ec6bb44-b1.5-loom.mappings.b1_5.layered+hash.498024041-v2
-  // same for SERVER vs server
-
   modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
   project.ploceus.addCommonLibraries()
   project.ploceus.dependOsl project.osl_version, project.environment
@@ -33,13 +27,18 @@ java {
   withSourcesJar()
 }
 
+sourceSets.main.resources {
+  srcDirs += 'src/main/shared-resources'
+}
+
+processResources {
+  filesMatching 'fabric.mod.json', {
+    expand project.properties
+  }
+}
+
 tasks.withType(Jar).configureEach {
   from rootProject.file('LICENSE')
-  from rootProject.file('shared-resources'), {
-    filesMatching 'fabric.mod.json', {
-      expand project.properties
-    }
-  }
 }
 
 publishing {
