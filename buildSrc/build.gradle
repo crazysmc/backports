@@ -19,6 +19,6 @@ repositories {
 }
 
 dependencies {
-  implementation 'fabric-loom:fabric-loom.gradle.plugin:1.3.9'
-  implementation 'ploceus:ploceus.gradle.plugin:1.4-SNAPSHOT'
+  implementation group: 'fabric-loom', name: 'fabric-loom.gradle.plugin', version: project.loom_version
+  implementation group: 'ploceus', name: 'ploceus.gradle.plugin', version: project.ploceus_version
 }

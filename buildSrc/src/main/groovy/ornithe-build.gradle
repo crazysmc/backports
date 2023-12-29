@@ -10,13 +10,19 @@ group = project.maven_group
 base.archivesName = "${project.mod_id}-${project.environment}"
 
 dependencies {
-  minecraft "com.mojang:minecraft:${project.minecraft_version}"
+  minecraft group: 'com.mojang', name: 'minecraft', version: project.minecraft_version
+
   mappings project.loom.layered {
+    //mappings group: 'net.ornithemc', name: 'feather',
+    //    version: "${project.minecraft_version}-${project.environment}+build.${project.feather_build}",
+    //    classifier: 'v2' // why does this not work smh
     mappings "net.ornithemc:feather:${project.minecraft_version}-${project.environment}+build.${project.feather_build}:v2"
     addLayer project.ploceus.nestedMappings()
   }
-  nests "net.ornithemc:nests:${project.minecraft_version}-${project.environment}+build.${project.nests_build}"
-  modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+  nests group: 'net.ornithemc', name: 'nests',
+      version: "${project.minecraft_version}-${project.environment}+build.${project.nests_build}"
+
+  modImplementation group: 'net.fabricmc', name: 'fabric-loader', version: project.loader_version
   project.ploceus.addCommonLibraries()
   project.ploceus.dependOsl project.osl_version, project.environment
 }

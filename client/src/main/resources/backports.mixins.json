@@ -4,7 +4,8 @@
 	"package": "io.github.crazysmc.backports.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"client": [
-		"InputPlayerEntityMixin"
+		"InputPlayerEntityMixin",
+		"GameGuiMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
