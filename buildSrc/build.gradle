@@ -1,0 +1,24 @@
+plugins {
+  id 'groovy-gradle-plugin'
+}
+
+repositories {
+  maven {
+    name = 'Fabric'
+    url = 'https://maven.fabricmc.net/'
+  }
+  maven {
+    name = 'Ornithe Releases'
+    url = 'https://maven.ornithemc.net/releases'
+  }
+  maven {
+    name = 'Ornithe Snapshots'
+    url = 'https://maven.ornithemc.net/snapshots'
+  }
+  gradlePluginPortal()
+}
+
+dependencies {
+  implementation 'fabric-loom:fabric-loom.gradle.plugin:1.4-SNAPSHOT'
+  implementation 'ploceus:ploceus.gradle.plugin:1.4-SNAPSHOT'
+}

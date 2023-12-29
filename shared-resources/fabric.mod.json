@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "Misc Backports",
+  "description": "Random stuff, don't use this lol.",
+  "authors": [
+    "crazysmc"
+  ],
+  "contact": {
+    "homepage": "https://github.com/crazysmc/${mod_id}",
+    "sources": "https://github.com/crazysmc/${mod_id}",
+    "issues": "https://github.com/crazysmc/${mod_id}/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/${mod_id}/icon.png",
+  "environment": "${environment}",
+  "entrypoints": {
+    "init": [
+      "${maven_group}.${mod_id}.Backports"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_semver}",
+    "osl-entrypoints": ">=0.4.0"
+  }
+}

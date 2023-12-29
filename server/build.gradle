@@ -1,0 +1,11 @@
+plugins {
+  id 'ornithe-build'
+}
+
+loom {
+  serverOnlyMinecraftJar()
+}
+
+ploceus {
+  serverOnlyMappings()
+}
