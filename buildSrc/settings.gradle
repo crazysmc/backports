@@ -1,0 +1,8 @@
+dependencyResolutionManagement {
+  versionCatalogs {
+    libs {
+      library 'loom', 'fabric-loom', 'fabric-loom.gradle.plugin' version '1.3.9'
+      library 'ploceus', 'ploceus', 'ploceus.gradle.plugin' version '1.4-SNAPSHOT'
+    }
+  }
+}

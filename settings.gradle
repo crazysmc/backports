@@ -1,2 +1,20 @@
+dependencyResolutionManagement {
+  versionCatalogs {
+    libs {
+      def minecraft = 'b1.5'
+      def feather = { env -> "$minecraft-$env+build.20" }
+      def nests = { env -> "$minecraft-$env+build.1" }
+      version 'minecraft', minecraft
+      library 'minecraft', 'com.mojang', 'minecraft' version minecraft
+      ['client', 'server'].each { env ->
+        library "feather-$env", 'net.ornithemc', 'feather' version feather(env)
+        library "nests-$env", 'net.ornithemc', 'nests' version nests(env)
+      }
+      library 'loader', 'net.fabricmc', 'fabric-loader' version '0.15.0'
+      version 'osl', '0.11.1'
+    }
+  }
+}
+
 include 'client'
 include 'server'

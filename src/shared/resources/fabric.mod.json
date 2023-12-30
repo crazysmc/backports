@@ -4,9 +4,7 @@
   "version": "${version}",
   "name": "Misc Backports",
   "description": "Random stuff, don't use this lol.",
-  "authors": [
-    "crazysmc"
-  ],
+  "authors": [ "crazysmc" ],
   "contact": {
     "homepage": "https://github.com/crazysmc/${mod_id}",
     "sources": "https://github.com/crazysmc/${mod_id}",
@@ -16,13 +14,12 @@
   "icon": "assets/${mod_id}/icon.png",
   "environment": "${environment}",
   "entrypoints": {
-    "init": [
-      "${maven_group}.${mod_id}.Backports"
+    "init": [ "${maven_group}.${mod_id}.Backports" ],
+    "${environment}-init": [
+      "${maven_group}.${mod_id}.Backports${environment.substring(0, 1).toUpperCase()}${environment.substring(1)}"
     ]
   },
-  "mixins": [
-    "${mod_id}.mixins.json"
-  ],
+  "mixins": [ "${mod_id}.mixins.json" ],
   "depends": {
     "minecraft": "1.0.0-beta.5"
   }

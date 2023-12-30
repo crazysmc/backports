@@ -11,6 +11,6 @@ public class Backports implements ModInitializer
   @Override
   public void init()
   {
-    LOGGER.info("Initializing Backports server side");
+    LOGGER.info("Initializing Backports main");
   }
 }

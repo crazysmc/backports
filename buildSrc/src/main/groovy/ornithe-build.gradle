@@ -5,26 +5,22 @@ plugins {
   id 'ploceus'
 }
 
-version = "${project.mod_version}+${project.minecraft_version}"
+version = "${project.mod_version}+${libs.versions.minecraft.get()}"
 group = project.maven_group
 base.archivesName = "${project.mod_id}-${project.environment}"
 
 dependencies {
-  minecraft group: 'com.mojang', name: 'minecraft', version: project.minecraft_version
+  minecraft libs.minecraft
 
   mappings project.loom.layered {
-    //mappings group: 'net.ornithemc', name: 'feather',
-    //    version: "${project.minecraft_version}-${project.environment}+build.${project.feather_build}",
-    //    classifier: 'v2' // why does this not work smh
-    mappings "net.ornithemc:feather:${project.minecraft_version}-${project.environment}+build.${project.feather_build}:v2"
+    mappings variantOf(libs.feather[project.environment]) { classifier 'v2' }
     addLayer project.ploceus.nestedMappings()
   }
-  nests group: 'net.ornithemc', name: 'nests',
-      version: "${project.minecraft_version}-${project.environment}+build.${project.nests_build}"
+  nests libs.nests[project.environment]
 
-  modImplementation group: 'net.fabricmc', name: 'fabric-loader', version: project.loader_version
+  modImplementation libs.loader
   project.ploceus.addCommonLibraries()
-  project.ploceus.dependOsl project.osl_version, project.environment
+  project.ploceus.dependOsl libs.versions.osl.get(), project.environment
 }
 
 java {
@@ -33,8 +29,13 @@ java {
   withSourcesJar()
 }
 
-sourceSets.main.resources {
-  srcDirs += 'src/main/shared-resources'
+sourceSets.main {
+  java {
+    srcDirs += 'src/shared/java'
+  }
+  resources {
+    srcDirs += 'src/shared/resources'
+  }
 }
 
 processResources {
