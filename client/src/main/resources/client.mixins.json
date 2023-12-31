@@ -6,6 +6,7 @@
   "client": [
     "GameGuiMixin",
     "GameOptionsMixin",
+    "LanguageManagerMixin",
     "MinecraftMixin"
   ],
   "injectors": {
