@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.crazysmc.backports.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "AxeItemMixin",
+    "CraftingManagerMixin",
+    "PickaxeItemMixin",
+    "ShovelItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

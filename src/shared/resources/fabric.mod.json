@@ -19,7 +19,10 @@
       "${maven_group}.${mod_id}.Backports${environment.substring(0, 1).toUpperCase()}${environment.substring(1)}"
     ]
   },
-  "mixins": [ "${mod_id}.mixins.json" ],
+  "mixins": [
+    "shared.mixins.json",
+    "${environment}.mixins.json"
+  ],
   "depends": {
     "minecraft": "1.0.0-beta.5"
   }

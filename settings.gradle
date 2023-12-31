@@ -5,7 +5,7 @@ dependencyResolutionManagement {
       def feather = { env -> "$minecraft-$env+build.20" }
       def nests = { env -> "$minecraft-$env+build.1" }
       version 'minecraft', minecraft
-      library 'minecraft', 'com.mojang', 'minecraft' version minecraft
+      library 'minecraft', 'com.mojang', 'minecraft' versionRef 'minecraft'
       ['client', 'server'].each { env ->
         library "feather-$env", 'net.ornithemc', 'feather' version feather(env)
         library "nests-$env", 'net.ornithemc', 'nests' version nests(env)
