@@ -5,12 +5,12 @@ plugins {
   id 'ploceus'
 }
 
-version = "${project.mod_version}+${libs.versions.minecraft.get()}"
+version = "${project.mod_version}+${libs.versions.minecraft[project.environment].get()}"
 group = project.maven_group
 base.archivesName = "${project.mod_id}-${project.environment}"
 
 dependencies {
-  minecraft libs.minecraft
+  minecraft libs.minecraft[project.environment]
 
   mappings project.loom.layered {
     mappings variantOf(libs.feather[project.environment]) { classifier 'v2' }

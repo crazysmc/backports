@@ -1,12 +1,12 @@
 dependencyResolutionManagement {
   versionCatalogs {
     libs {
-      def minecraft = 'b1.5'
-      def feather = { env -> "$minecraft-$env+build.20" }
-      def nests = { env -> "$minecraft-$env+build.1" }
-      version 'minecraft', minecraft
-      library 'minecraft', 'com.mojang', 'minecraft' versionRef 'minecraft'
+      def minecraft = { env -> "b1.5_0${env == 'client' ? '1' : '2'}" }
+      def feather = { env -> "${minecraft env}-$env+build.20" }
+      def nests = { env -> "${minecraft env}-$env+build.1" }
       ['client', 'server'].each { env ->
+        version "minecraft-$env", minecraft(env)
+        library "minecraft-$env", 'com.mojang', 'minecraft' versionRef "minecraft-$env"
         library "feather-$env", 'net.ornithemc', 'feather' version feather(env)
         library "nests-$env", 'net.ornithemc', 'nests' version nests(env)
       }
