@@ -5,53 +5,48 @@ plugins {
   id 'ploceus'
 }
 
-version = "${project.mod_version}+${libs.versions.minecraft[project.environment].get()}"
-group = project.maven_group
-base.archivesName = "${project.mod_id}-${project.environment}"
+version = "$mod_version+${libs.versions.minecraft[environment].get()}"
+group = maven_group
+base.archivesName = "$mod_id-$environment"
 
 dependencies {
-  minecraft libs.minecraft[project.environment]
+  minecraft libs.minecraft[environment]
 
-  mappings project.loom.layered {
-    mappings variantOf(libs.feather[project.environment]) { classifier 'v2' }
-    addLayer project.ploceus.nestedMappings()
+  mappings loom.layered {
+    mappings variantOf(libs.feather[environment]) { classifier 'v2' }
+    addLayer ploceus.nestedMappings()
   }
-  nests libs.nests[project.environment]
+  nests libs.nests[environment]
 
   modImplementation libs.loader
-  project.ploceus.addCommonLibraries()
-  project.ploceus.dependOsl libs.versions.osl.get(), project.environment
+  ploceus.addCommonLibraries()
+  ploceus.dependOsl libs.versions.osl.get(), environment
 }
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
+  sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
   withSourcesJar()
 }
 
 sourceSets.main {
-  java {
-    srcDirs += 'src/shared/java'
-  }
-  resources {
-    srcDirs += 'src/shared/resources'
-  }
+  java { srcDirs += 'src/shared/java' }
+  resources { srcDirs += 'src/shared/resources' }
 }
 
 processResources {
   filesMatching 'fabric.mod.json', {
-    expand project.properties
+    expand properties
   }
 }
 
-tasks.withType(Jar).configureEach {
+tasks.withType Jar configureEach {
   from rootProject.file('LICENSE')
 }
 
 publishing {
   publications {
     mavenJava(MavenPublication) {
-      from project.components.java
+      from components.java
     }
   }
 }
