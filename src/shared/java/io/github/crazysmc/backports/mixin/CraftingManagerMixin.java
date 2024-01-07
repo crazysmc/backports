@@ -25,5 +25,6 @@ public abstract class CraftingManagerMixin
   {
     registerShaped(new ItemStack(Item.APPLE), "###", "###", "###", '#', Block.SAPLING);
     registerShapeless(new ItemStack(Item.STRING, 4), new ItemStack(Block.WOOL, 1, -1));
+    registerShapeless(new ItemStack(Item.BONE), Item.PORKCHOP);
   }
 }

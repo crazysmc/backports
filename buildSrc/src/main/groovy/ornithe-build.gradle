@@ -20,7 +20,9 @@ dependencies {
 
   modImplementation libs.loader
   ploceus.addCommonLibraries()
-  ploceus.dependOsl libs.versions.osl.get(), environment
+//  ploceus.dependOsl libs.versions.osl.get(), environment
+  ploceus.dependOslModule 'core', libs.versions.osl.core.get(), environment
+  ploceus.dependOslModule 'entrypoints', libs.versions.osl.entrypoints.get(), environment
 }
 
 java {
@@ -35,7 +37,7 @@ sourceSets.main {
 
 processResources {
   filesMatching 'fabric.mod.json', {
-    expand properties
+    expand project.properties
   }
 }
 
